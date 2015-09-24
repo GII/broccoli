@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright (C) 2015 Mytech Ingenieria Aplicada <http://www.mytechia.com>
+Copyright (C) 2015 Alejandro Paz <alejandropl@lagostelle.com>
+
+This file is part of Broccoli.
+
+Broccoli is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+Broccoli is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Broccoli. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    
+    
+    <!-- ************************************************************ simple & reusable elements ******************************************************************** -->
+    
+    <xs:element name="literal">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="string"/>
+                <xs:enumeration value="integar"/>
+                <xs:enumeration value="decimal"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element> 
+    
+    <xs:element name="multiplicity">
+        <xs:complexType>
+            <xs:attribute name="min" type="xs:string"/>
+            <xs:attribute name="max" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="import">
+        <xs:complexType>
+            <xs:attribute name="prefix" type="xs:string" use="required"/>
+            <xs:attribute name="to" type="xs:anyURI" use="required"/>            
+            
+            <xs:attribute name="dialect" type="xs:anyURI"/>
+            <xs:attribute name="lang" type="xs:anyURI"/>
+        </xs:complexType>
+    </xs:element>
+    
+
+    <!-- ************************************************************ complex elements: concept ********************************************************************* -->
+
+
+        <xs:complexType mixed="true" name="property">
+
+            <xs:sequence>
+                <xs:element ref="concept" minOccurs="0"/>
+                <xs:element ref="multiplicity" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="property" type="property" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="URI" type="xs:anyURI"/>
+
+        </xs:complexType>
+
+    <xs:element name="concept">
+        <xs:complexType>
+        
+            <xs:sequence>
+                <xs:element ref="import" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="subconceptOf" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="URI" type="xs:anyURI"/>
+                            <xs:element ref="concept" />
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="property" type="property" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            
+            <xs:attribute name="URI" type="xs:anyURI" use="required"/>
+            <xs:attribute name="subconceptOf" type="xs:anyURI"/>
+            
+            <xs:attribute name="ontology" type="xs:anyURI"/>
+            
+            <xs:attribute name="ontologyLanguage" type="xs:anyURI"/>
+            <xs:attribute name="naturalLanguage" type="xs:string"/>
+            
+        </xs:complexType>
+    </xs:element>
+    
+
+    
+    
+    <!-- ************************************************************ complex elements: instance ******************************************************************** -->
+    
+    <xs:element name="instance">        
+        <xs:complexType>
+            
+            <xs:sequence>
+                <xs:element ref="import" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="with" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            
+            <xs:attribute name="of" type="xs:string" use="required"/>
+            <xs:attribute name="URI" type="xs:anyURI"/>  
+            
+            <xs:attribute name="ontology" type="xs:anyURI"/>
+            
+        </xs:complexType>                    
+    </xs:element> 
+    
+    <xs:element name="with" >
+        <xs:complexType mixed="true">     
+        
+            <xs:choice minOccurs="0">       
+                <xs:element name="URI" type="xs:anyURI"/>
+                <xs:element ref="concept" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="instance" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="literal" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="with" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            
+            <xs:attribute name="property" type="xs:string" use="required"/>
+            <xs:attribute name="valueURI" type="xs:string"/>
+            <xs:attribute name="value" type="xs:string"/>
+            <xs:attribute name="ofURI" type="xs:anyURI"/>
+            
+            <xs:attribute name="ontology" type="xs:anyURI"/>
+            
+        </xs:complexType>        
+    </xs:element> 
+    
+    
+    <!-- ************************************************************ complex elements: ontology ********************************************************************* -->
+    
+    <xs:element name="ontology">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="concept" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="instance" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            
+            <xs:attribute name="URI" type="xs:anyURI" use="required"/>
+        
+            <xs:attribute name="ontologyLanguage" type="xs:anyURI"/>
+            <xs:attribute name="naturalLanguage" type="xs:string"/>
+            <xs:attribute name="versionNumber" type="xs:string"/>                        
+        </xs:complexType>
+                
+    </xs:element>
+
+</xs:schema> 
