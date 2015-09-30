@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright (C) 2015 Mytech Ingenieria Aplicada <http://www.mytechia.com>
+Copyright (C) 2015 Alejandro Paz <alejandropl@lagostelle.com>
+
+This file is part of Broccoli.
+
+Broccoli is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+Broccoli is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Broccoli. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+
+<ontology URI="http://hi3project.com/broccoli/bsdm#ontology"
+          ontologyLanguage="http://hi3project.com/broccoli/bsdl#ontology"
+          versionNumber="0.9.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="bsdlSchema.xsd">
+
+
+    <!-- Service -->
+
+    <concept URI="http://hi3project.com/broccoli/bsdm#serviceDescription"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="grounding" URI="http://hi3project.com/broccoli/bsdm#serviceGrounding">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="profile" URI="http://hi3project.com/broccoli/bsdm#serviceProfile">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="implementation" URI="http://hi3project.com/broccoli/bsdm#serviceImplementation">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="name" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <!-- Profile -->
+
+    <concept URI="http://hi3project.com/broccoli/bsdm#serviceProfile"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="serviceType" URI="http://gii.udc.es/semanticServices#bsdm/profile/serviceType">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+        <property name="nonFunctionalProperty" URI="http://hi3project.com/broccoli/bsdm/profile#nonFunctionalProperty">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="advertisedFunctionality"
+                  URI="http://hi3project.com/broccoli/bsdm/profile#advertisedFunctionality">
+            <multiplicity min="1" max="*"/>
+        </property>
+
+        <property name="advertisedSubscription"
+                  URI="http://hi3project.com/broccoli/bsdm/profile#advertisedSubscription">
+            <multiplicity min="1" max="*"/>
+        </property>
+
+        <property name="name" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="version" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://gii.udc.es/semanticServices#bsdm/profile/serviceType"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="identifier" URI="http://hi3project.com/broccoli/bsdl#semanticIdentifier">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#functionality"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="functionalityCategory" URI="http://hi3project.com/broccoli/bsdm/profile#functionalityCategory">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+        <property name="input" URI="http://hi3project.com/broccoli/bsdm/profile#input">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="output" URI="http://hi3project.com/broccoli/bsdm/profile#output">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="effect" URI="http://hi3project.com/broccoli/bsdm/profile#effect">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="nonFunctionalProperty" URI="http://hi3project.com/broccoli/bsdm/profile#nonFunctionalProperty">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#serviceFunctionality"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/profile#functionality">
+
+        <property name="functionalityGrounding"
+                  URI="http://hi3project.com/broccoli/bsdm/grounding#functionalityGrounding">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="name" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#advertisedFunctionality"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/profile#serviceFunctionality"/>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#advertisedSubscription"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/profile#serviceFunctionality"/>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#condition"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="type">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#effect"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="type">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#functionalityCategory"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="type" URI="http://hi3project.com/broccoli/bsdl#semanticIdentifier">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#input"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/profile#parameter"/>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#inputValue"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="input" URI="http://hi3project.com/broccoli/bsdm/profile#input">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#optional"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="input" URI="http://hi3project.com/broccoli/bsdm/profile#input">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="output" URI="http://hi3project.com/broccoli/bsdm/profile#output">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="nonFunctionalProperty" URI="http://hi3project.com/broccoli/bsdm/profile#nonFunctionalProperty">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#output"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/profile#parameter"/>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#outputValue"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+
+        <property name="output" URI="http://hi3project.com/broccoli/bsdm/profile#output">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#parameter"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="name" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="type" URI="http://hi3project.com/broccoli/bsdl#semanticIdentifier">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#parameterValue"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="value" URI="http://hi3project.com/broccoli/bsdl#object">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="type" URI="http://hi3project.com/broccoli/bsdl#uri">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#preferred"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="input" URI="http://hi3project.com/broccoli/bsdm/profile#input">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="output" URI="http://hi3project.com/broccoli/bsdm/profile#output">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="nonFunctionalProperty" URI="http://hi3project.com/broccoli/bsdm/profile#nonFunctionalProperty">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#requestedFunctionality"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/profile#functionality">
+
+        <property name="owlToJava" URI="http://hi3project.com/broccoli/bsdm/grounding#owlToJavaReference">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+        <property name="optional" URI="http://hi3project.com/broccoli/bsdm/profile#optional">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+        <property name="preferred" URI="http://hi3project.com/broccoli/bsdm/profile#preferred">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/profile#nonFunctionalProperty"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"/>
+
+    <concept
+            URI="http://gii.udc.es/semanticServices#bsdm/profile/nonFunctionalProperties/referenceToNonFunctionalProperty"
+            ontology="http://hi3project.com/broccoli/bsdm#ontology"
+            subconceptOf="http://hi3project.com/broccoli/bsdm/profile#nonFunctionalProperty">
+
+        <property name="reference" URI="http://hi3project.com/broccoli/bsdl#semanticIdentifier">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <!-- Discovery -->
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/discovery#functionalitySearchEvaluation"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"/>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/discovery#functionalitySearchResult"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="functionality" URI="http://hi3project.com/broccoli/bsdm/profile#advertisedFunctionality">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="evaluation" URI="http://hi3project.com/broccoli/bsdm/discovery#functionalitySearchEvaluation">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/discovery#requestedFunctionality"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/profile#functionality"/>
+
+
+    <!-- Grounding -->
+
+    <concept URI="http://hi3project.com/broccoli/bsdm#serviceGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="functionalityGrounding"
+                  URI="http://hi3project.com/broccoli/bsdm/grounding#functionalityGrounding">
+            <multiplicity min="1" max="*"/>
+        </property>
+
+        <property name="ontologyLanguage" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="groundingType" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#asyncMessageGrounding"
+             subconceptOf="http://hi3project.com/broccoli/bsdm#serviceGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="url" URI="http://hi3project.com/broccoli/bsdl#semanticIdentifier">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="channel" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#functionalityGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="advertisedFunctionality"
+                  URI="http://hi3project.com/broccoli/bsdm/profile#advertisedFunctionality">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="communicationsType" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#asyncJMSMessageFunctionalityGrounding"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/grounding#asyncMessageFunctionalityGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"/>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#asyncJMSMessageGrounding"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/grounding#asyncMessageGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"/>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#asyncMessageFunctionalityGrounding"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/grounding#functionalityGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="channel" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#asyncStompMessageFunctionalityGrounding"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/grounding#asyncMessageFunctionalityGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"/>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#asyncStompMessageGrounding"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/grounding#asyncMessageGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"/>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/grounding#localImplementationGrounding"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/grounding#functionalityGrounding"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="channel" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+    </concept>
+
+
+    <!-- Implementation -->
+
+    <concept URI="http://hi3project.com/broccoli/bsdm#serviceImplementation"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="implementationType" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="functionalityImplementation"
+                  URI="http://hi3project.com/broccoli/bsdm/implementation#functionalityImplementations">
+            <multiplicity min="1" max="*"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/implementation#functionalityImplementation"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="serviceImplementation" URI="http://hi3project.com/broccoli/bsdm#serviceImplementation">
+            <multiplicity min="1" max="*"/>
+        </property>
+
+        <property name="functionalityName" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="advertisedFunctionality"
+                  URI="http://hi3project.com/broccoli/bsdm/profile#advertisedFunctionality">
+            <multiplicity min="0" max="1"/>
+        </property>
+
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/implementation#functionalityImplementationJena"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology"
+             subconceptOf="http://hi3project.com/broccoli/bsdm/implementation#functionalityImplementation">
+
+        <property name="class" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="method" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="ontologyToJava"
+                  URI="http://hi3project.com/broccoli/bsdm/implementation#ontologyToJavaReference">
+            <multiplicity min="0" max="*"/>
+        </property>
+
+    </concept>
+
+
+    <concept URI="http://hi3project.com/broccoli/bsdm/implementation#ontologyToJavaReference"
+             ontology="http://hi3project.com/broccoli/bsdm#ontology">
+
+        <property name="ontologyURI" URI="http://hi3project.com/broccoli/bsdl#literal">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+        <property name="javaNamespace" URI="http://hi3project.com/broccoli/bsdl#semanticIdentifier">
+            <multiplicity min="1" max="1"/>
+        </property>
+
+    </concept>
+
+
+</ontology>
